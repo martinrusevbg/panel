@@ -19,19 +19,19 @@ class AdminController extends CrudController{
         parent::all($entity); 
 
         $this->filter = \DataFilter::source(Admin::with('roles'));
-        $this->filter->add('id', 'ID', 'text');
-        $this->filter->add('firstname', 'First name', 'text');
-        $this->filter->add('last_name', 'Last Name', 'text');
-        $this->filter->add('email', 'Email', 'text');
+        $this->filter->add('id', \Lang::get('panel::fields.AdminNumber'), 'text');
+        $this->filter->add('firstname', \Lang::get('panel::fields.AdminFirstName'), 'text');
+        $this->filter->add('last_name', \Lang::get('panel::fields.AdminLastName'), 'text');
+        $this->filter->add('email', \Lang::get('panel::fields.AdminEmail'), 'text');
         $this->filter->submit('search');
         $this->filter->reset('reset');
         $this->filter->build();
                 
         $this->grid = \DataGrid::source($this->filter);
-        $this->grid->add('id','ID', true)->style("width:100px");
-        $this->grid->add('{{ $first_name }} {{ $last_name}}','first name');
-        $this->grid->add('email','Email');
-       $this->grid->add('{{ implode(", ", $roles->lists("name")->all()) }}', 'Role');
+        $this->grid->add('id',\Lang::get('panel::fields.AdminNumber'), true)->style("width:100px");
+        $this->grid->add('{{ $first_name }} {{ $last_name}}',\Lang::get('panel::fields.AdminFirstName'));
+        $this->grid->add('email',\Lang::get('panel::fields.AdminEmail'));
+       $this->grid->add('{{ implode(", ", $roles->lists("name")->all()) }}', \Lang::get('panel::fields.AdminRole'));
 
         $this->addStylesToGrid();
         return $this->returnView();
@@ -50,12 +50,12 @@ class AdminController extends CrudController{
         $this->edit = \DataEdit::source(new Admin());
 
         $this->edit->label('Edit Admin');
-        $this->edit->link("rapyd-demo/filter","Articles", "TR")->back();
-        $this->edit->add('email','Email', 'text')->rule('required|min:5');
-        $this->edit->add('first_name', 'firstname', 'text');
-        $this->edit->add('last_name', 'lastname', 'text');
-        $this->edit->add('password', 'password', 'password')->rule('required');  
-        $this->edit->add('roles','Roles','checkboxgroup')->options(Role::lists('name', 'id')->all());
+        $this->edit->link("rapyd-demo/filter",\Lang::get('panel::fields.AdminArticles'), "TR")->back();
+        $this->edit->add('email',\Lang::get('panel::fields.AdminEmail'), 'text')->rule('required|min:5');
+        $this->edit->add('first_name', \Lang::get('panel::fields.AdminFirstName'), 'text');
+        $this->edit->add('last_name', \Lang::get('panel::fields.AdminLastName'), 'text');
+        $this->edit->add('password', \Lang::get('panel::fields.AdminPassword'), 'password')->rule('required');  
+        $this->edit->add('roles',\Lang::get('panel::fields.AdminRoles'),'checkboxgroup')->options(Role::lists('name', 'id')->all());
 
         return $this->returnEditView();
     }

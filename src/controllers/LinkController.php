@@ -11,16 +11,16 @@ class LinkController extends CrudController {
         parent::all($entity);
 
         $this->filter = \DataFilter::source(new Link());
-        $this->filter->add('id', 'ID', 'text');
-        $this->filter->add('display', 'Display', 'text');
+        $this->filter->add('id', \Lang::get('panel::fields.LinksNumber'), 'text');
+        $this->filter->add('display', \Lang::get('panel::fields.LinksDisplay'), 'text');
         $this->filter->submit('search');
         $this->filter->reset('reset');
         $this->filter->build();
 
         $this->grid = \DataGrid::source($this->filter);
-        $this->grid->add('id', 'ID', true)->style("width:100px");
-        $this->grid->add('display', 'Display');
-        $this->grid->add('url', 'Model');
+        $this->grid->add('id', \Lang::get('panel::fields.LinksNumber'), true)->style("width:100px");
+        $this->grid->add('display', \Lang::get('panel::fields.LinksDisplay'));
+        $this->grid->add('url', \Lang::get('panel::fields.LinksModel'));
 
         $this->addStylesToGrid();
 
@@ -42,9 +42,9 @@ class LinkController extends CrudController {
         $helpMessage = \Lang::get('panel::fields.links_help');
 
         $this->edit->label('Edit Links');
-        $this->edit->link("rapyd-demo/filter", "Articles", "TR")->back();
-        $this->edit->add('display', \Lang::get('panel::fields.linksDisplay'), 'text')->rule('required');
-        $this->edit->add('url', \Lang::get('panel::fields.linksLink'), 'text')->rule('required');
+        $this->edit->link("rapyd-demo/filter", \Lang::get('panel::fields.LinkArticles'), "TR")->back();
+        $this->edit->add('display', \Lang::get('panel::fields.LinksDisplay'), 'text')->rule('required');
+        $this->edit->add('url', \Lang::get('panel::fields.LinksLink'), 'text')->rule('required');
 
         $this->edit->saved(function () use ($entity) {
            $this->edit->message(\Lang::get('panel::fields.dataSavedSuccessfull'));

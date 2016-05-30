@@ -11,17 +11,17 @@ class RoleController extends CrudController {
 		parent::all($entity);
 
 		$this->filter = \DataFilter::source(Role::with('permissions'));
-		$this->filter->add('id', 'ID', 'text');
-		$this->filter->add('name', 'Name', 'text');
+		$this->filter->add('id', \Lang::get('panel::fields.RoleNumber'), 'text');
+		$this->filter->add('name', \Lang::get('panel::fields.RoleName'), 'text');
 		$this->filter->submit('search');
 		$this->filter->reset('reset');
 		$this->filter->build();
 
 		$this->grid = \DataGrid::source($this->filter);
-		$this->grid->add('id', 'ID', true)->style("width:100px");
-		$this->grid->add('name', 'Name')->style('width:100px');
-		$this->grid->add('label', 'Description');
-		$this->grid->add('{{ implode(", ", $permissions->lists("name")->all()) }}', 'name' );
+		$this->grid->add('id', \Lang::get('panel::fields.RoleNumber'), true)->style("width:100px");
+		$this->grid->add('name', \Lang::get('panel::fields.RoleName'))->style('width:100px');
+		$this->grid->add('label', \Lang::get('panel::fields.RoleDescription'));
+		$this->grid->add('{{ implode(", ", $permissions->lists("name")->all()) }}', \Lang::get('panel::fields.RoleName') );
 
 
 		$this->addStylesToGrid();
@@ -38,10 +38,10 @@ class RoleController extends CrudController {
 		$helpMessage = \Lang::get('panel::fields.roleHelp');
 
 		$this->edit->label('Edit Role');
-		$this->edit->link("rapyd-demo/filter", "Role", "TR")->back();
-		$this->edit->add('name', 'Name', 'text')->rule('required');
-		$this->edit->add('label', 'Description', 'text')->rule('required');
-		$this->edit->add('permissions','Permissions','checkboxgroup')->options(Permission::lists('name', 'id')->all());
+		$this->edit->link("rapyd-demo/filter", \Lang::get('panel::fields.RoleRole'), "TR")->back();
+		$this->edit->add('name', \Lang::get('panel::fields.RoleName'), 'text')->rule('required');
+		$this->edit->add('label', \Lang::get('panel::fields.RoleDescription'), 'text')->rule('required');
+		$this->edit->add('permissions',\Lang::get('panel::fields.RolePermissions'),'checkboxgroup')->options(Permission::lists('name', 'id')->all());
 		$this->edit->saved(function () use ($entity) {
 			$this->edit->message(\Lang::get('panel::fields.dataSavedSuccessfull'));
 			$this->edit->link('panel/Permission/all', \Lang::get('panel::fields.back'));
