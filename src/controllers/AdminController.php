@@ -50,7 +50,6 @@ class AdminController extends CrudController{
         $this->edit = \DataEdit::source(new Admin());
 
         $this->edit->label('Edit Admin');
-        $this->edit->link("rapyd-demo/filter",\Lang::get('panel::fields.AdminArticles'), "TR")->back();
         $this->edit->add('email',\Lang::get('panel::fields.AdminEmail'), 'text')->rule('required|min:5');
         $this->edit->add('first_name', \Lang::get('panel::fields.AdminFirstName'), 'text');
         $this->edit->add('last_name', \Lang::get('panel::fields.AdminLastName'), 'text');

@@ -36,7 +36,6 @@ class PermissionController extends CrudController {
 		$helpMessage = (\Lang::get('panel::fields.roleHelp'));
 
 		$this->edit->label('Edit Permission');
-		$this->edit->link("rapyd-demo/filter", \Lang::get('panel::fields.PermissionArticles'), "TR")->back();
 		$this->edit->add('name', \Lang::get('panel::fields.PermissionURL'), 'text')->rule('required');
 		$this->edit->add('label', \Lang::get('panel::fields.PermissionDescription'), 'text')->rule('required');
 
