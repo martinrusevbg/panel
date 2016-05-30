@@ -43,8 +43,8 @@ class LinkController extends CrudController {
 
         $this->edit->label('Edit Links');
         $this->edit->link("rapyd-demo/filter", "Articles", "TR")->back();
-        $this->edit->add('display', 'Display', 'text')->rule('required');
-        $this->edit->add('url', 'link', 'text')->rule('required');
+        $this->edit->add('display', \Lang::get('panel::fields.linksDisplay'), 'text')->rule('required');
+        $this->edit->add('url', \Lang::get('panel::fields.linksLink'), 'text')->rule('required');
 
         $this->edit->saved(function () use ($entity) {
            $this->edit->message(\Lang::get('panel::fields.dataSavedSuccessfull'));
