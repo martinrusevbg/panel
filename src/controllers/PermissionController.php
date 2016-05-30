@@ -13,8 +13,8 @@ class PermissionController extends CrudController {
 		$this->filter = \DataFilter::source(new Permission());
 		$this->filter->add('id', \Lang::get('panel::fields.PermissionNumber'), 'text');
 		$this->filter->add('name', \Lang::get('panel::fields.PermissionName'), 'text');
-		$this->filter->submit('search');
-		$this->filter->reset('reset');
+		$this->filter->submit(\Lang::get('panel::fields.search'));
+		$this->filter->reset(\Lang::get('panel::fields.reset'));
 		$this->filter->build();
 
 		$this->grid = \DataGrid::source($this->filter);
@@ -41,8 +41,8 @@ class PermissionController extends CrudController {
 		$this->edit->add('label', \Lang::get('panel::fields.PermissionDescription'), 'text')->rule('required');
 
 		$this->edit->saved(function () use ($entity) {
-			$this->edit->message('Awesome, Data Saved successfully');
-			$this->edit->link('panel/Permission/all', 'Back');
+			$this->edit->message(\Lang::get('panel::fields.dataSavedSuccessfull'));
+			$this->edit->link('panel/Permission/all', \Lang::get('panel::fields.back'));
 		});
 
 		$this->addHelperMessage($helpMessage);

@@ -13,8 +13,8 @@ class RoleController extends CrudController {
 		$this->filter = \DataFilter::source(Role::with('permissions'));
 		$this->filter->add('id', \Lang::get('panel::fields.RoleNumber'), 'text');
 		$this->filter->add('name', \Lang::get('panel::fields.RoleName'), 'text');
-		$this->filter->submit('search');
-		$this->filter->reset('reset');
+		$this->filter->submit(\Lang::get('panel::fields.search'));
+		$this->filter->reset(\Lang::get('panel::fields.reset'));
 		$this->filter->build();
 
 		$this->grid = \DataGrid::source($this->filter);

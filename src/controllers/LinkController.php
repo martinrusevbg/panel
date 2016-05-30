@@ -13,8 +13,8 @@ class LinkController extends CrudController {
         $this->filter = \DataFilter::source(new Link());
         $this->filter->add('id', \Lang::get('panel::fields.LinksNumber'), 'text');
         $this->filter->add('display', \Lang::get('panel::fields.LinksDisplay'), 'text');
-        $this->filter->submit('search');
-        $this->filter->reset('reset');
+        $this->filter->submit(\Lang::get('panel::fields.search'));
+        $this->filter->reset(\Lang::get('panel::fields.reset'));
         $this->filter->build();
 
         $this->grid = \DataGrid::source($this->filter);

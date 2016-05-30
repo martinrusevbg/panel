@@ -18,8 +18,8 @@ class UsersController extends Controller{
         $this->filter = \DataFilter::source(new \User());
         $this->filter->add('id', \Lang::get('panel::fields.UserNumber'), 'text');
         $this->filter->add('name', \Lang::get('panel::fields.UserName'), 'text');
-        $this->filter->submit('search');
-        $this->filter->reset('reset');
+        $this->filter->submit(\Lang::get('panel::fields.search'));
+        $this->filter->reset(\Lang::get('panel::fields.reset'));
         $this->filter->build();
                 
         $this->grid = \DataGrid::source($this->filter);

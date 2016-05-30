@@ -23,8 +23,8 @@ class AdminController extends CrudController{
         $this->filter->add('firstname', \Lang::get('panel::fields.AdminFirstName'), 'text');
         $this->filter->add('last_name', \Lang::get('panel::fields.AdminLastName'), 'text');
         $this->filter->add('email', \Lang::get('panel::fields.AdminEmail'), 'text');
-        $this->filter->submit('search');
-        $this->filter->reset('reset');
+        $this->filter->submit(\Lang::get('panel::fields.search'));
+        $this->filter->reset(\Lang::get('panel::fields.reset'));
         $this->filter->build();
                 
         $this->grid = \DataGrid::source($this->filter);
