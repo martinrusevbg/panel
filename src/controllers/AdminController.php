@@ -54,7 +54,12 @@ class AdminController extends CrudController{
         $this->edit->add('first_name', \Lang::get('panel::fields.AdminFirstName'), 'text');
         $this->edit->add('last_name', \Lang::get('panel::fields.AdminLastName'), 'text');
         $this->edit->add('password', \Lang::get('panel::fields.AdminPassword'), 'password')->rule('required');  
-        $this->edit->add('roles',\Lang::get('panel::fields.AdminRoles'),'checkboxgroup')->options(Role::lists('name', 'id')->all());
+        $roles = Role::lists('name', 'id')->all();
+        $user = \Auth::guard('panel')->user();
+        $user_roles = $user->roles()->get()->toArray();
+        $min = min($user_roles);
+        $slice_roles = array_slice($roles, $min['id']-1, null, true); 
+        $this->edit->add('roles',\Lang::get('panel::fields.AdminRoles'),'checkboxgroup')->options($slice_roles);
 
         return $this->returnEditView();
     }

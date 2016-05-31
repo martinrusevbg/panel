@@ -63,7 +63,32 @@ public function getRememberTokenName(){
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+    public function delete() {
+        $user = \Auth::guard('panel')->user();
+        if(is_null($user)){
+            return false;
+        }
+        if(!$user->hasRole("super")){
+            return false;
+        }
+        parent::delete();
+    }
 
+    public function save(array $options = []) {
+        $currentUser = \Auth::guard('panel')->user();
+        $user_roles = $currentUser->roles()->get()->toArray();
+        $min = min($user_roles);
 
+        $updatedUser = Admin::find(($this->original['id']));
+        $user_roles_updated = $updatedUser->roles()->get()->toArray();
+        $min_updated = min($user_roles_updated);
+
+        if($min_updated < $min) {
+            return false;
+        }
+        else {
+            parent::save();        
+        }
+    }
 
 }
