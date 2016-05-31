@@ -35,7 +35,7 @@ class PermissionController extends CrudController {
 
 		$helpMessage = (\Lang::get('panel::fields.roleHelp'));
 
-		$this->edit->label('Edit Permission');
+		$this->edit->label(\Lang::get('panel::fields.PermissionEditTitle'));
 		$this->edit->add('name', \Lang::get('panel::fields.PermissionURL'), 'text')->rule('required');
 		$this->edit->add('label', \Lang::get('panel::fields.PermissionDescription'), 'text')->rule('required');
 

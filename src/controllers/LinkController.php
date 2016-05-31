@@ -41,7 +41,7 @@ class LinkController extends CrudController {
 
         $helpMessage = \Lang::get('panel::fields.links_help');
 
-        $this->edit->label('Edit Links');
+        $this->edit->label(\Lang::get('panel::fields.LinkEditTitle'));
         $this->edit->add('display', \Lang::get('panel::fields.LinksDisplay'), 'text')->rule('required');
         $this->edit->add('url', \Lang::get('panel::fields.LinksLink'), 'text')->rule('required');
 

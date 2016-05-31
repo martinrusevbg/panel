@@ -39,7 +39,7 @@ class UsersController extends Controller{
               
         $this->edit = \DataEdit::source(new \User());
         
-        $this->edit->label('Edit User');
+        $this->edit->label(\Lang::get('panel::fields.UserEditTitle'));
         $this->edit->add('name',\Lang::get('panel::fields.UserName'), 'text')->rule('required|min:5');
         $this->edit->add('username',\Lang::get('panel::fields.UserUserName'), 'text')->rule('required|min:5');
         return $this->returnEditView();

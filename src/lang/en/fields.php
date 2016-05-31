@@ -72,4 +72,9 @@ return array(
     'UserName'=>'Name',
     'UserArticles'=>'Articles',
     'UserUserName'=>'User Name',
+    'UserEditTitle'=>'Edit User',
+    'RoleEditTitle'=>'Edit Role',
+    'PermissionEditTitle'=>'Edit Permission',
+    'LinkEditTitle'=>'Edit Link',
+    'AdminEditTitle'=>'Edit Admin',
 );
