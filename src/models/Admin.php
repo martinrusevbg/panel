@@ -92,7 +92,7 @@ use HasRoles;
 //    }
 
     public function save(array $options = []) {
-        if (!empty($_REQUEST['_token']) && $_REQUEST['save'] === '1') {
+        if (key_exists('_token',$_REQUEST) && key_exists('save',$_REQUEST) && $_REQUEST['save'] === '1') {
             $currentUser = \Auth::guard('panel')->user();
             $user_roles = $currentUser->roles()->get()->toArray();
             unset($min);
